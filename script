@@ -1,0 +1,47 @@
+#!/bin/bash
+
+#Update your AWS cloud EC2 machine with script below.
+
+#DO NOT RUN THIS SCRIPT IS YOU DO NOT HAVE A DOMAIN. SSL WILL BREAK THE SCRIPT IF THERE IS NO DOMAIN
+
+#Get domain name. e.g google.com
+read -p "What is your domain name? " domain
+
+#Get Node version number to install
+read -p "I'm going to install Node...what version of node do you want installed?: " number
+
+#Update and install binaries
+sudo apt update
+
+sudo apt upgrade
+
+#Setup Node version install
+cd ~
+
+curl -sL https://deb.nodesource.com/setup_$number.x -o /tmp/nodesource_setup.sh
+
+sudo bash /tmp/nodesource_setup.sh
+
+#Install Node.js
+sudo apt-get -y nodejs
+
+#Install nginx and ssl. Make sure you have a domain for this part
+sudo apt-get -y nginx
+
+#Install Lets encrypt certbot
+sudo apt install certbot python3-certbot-nginx
+
+#Create a domain you have registered in Nginx
+sudo cp /etc/nginx/sites-available/default $domain
+
+#Append domain path to folder of domain nginx file. This assumes that the domain is in root folder
+sudo sed -i 's/root /var/www/html;/root /root/$domain;/g' /etc/nginx/sites-available/$domain
+
+#setup domain as server in nginx domain file
+sudo sed -i 's/server_name _;/server_name $domain;/g' /etc/nginx/sites-available/$domain
+
+#install SSL
+sudo certbot --nginx -d $domain
+
+#set reminder to renew SSL after 3 months
+sudo certbot renew --dry-run

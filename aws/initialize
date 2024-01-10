@@ -1,0 +1,11 @@
+#!/bin/bash
+
+cd && read -p "paste your github repo url here: " git_repo_url
+
+echo 'Script will continue in 5 seconds'
+
+git clone $git_repo_url
+
+sleep 5
+
+git config --global user.email "reagan.musav@gmail.com" && git config --global user.name "Reagan Musa" && git config --global credential.helper store
