@@ -7,4 +7,4 @@ read -p "What is the public ip or public dns of your ec2 instance? " ec2
 
 
 #Connect to aws EC2 instance
-ssh -i "$pem.pem" $ec2User@ec2
+ssh -i "$pem.pem" $ec2User@$ec2
