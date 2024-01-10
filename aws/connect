@@ -2,8 +2,8 @@
 
 #get ec2 user, ec2 instance ip and name of pem file
 read -p "What is the name of your pem file? " pem
-read -p "What is the username of your ec2 instance...e.g. ubuntu? " $ec2user
-read -p "What is the public ip or public dns of your ec2 instance? " $ec2
+read -p "What is the username of your ec2 instance...e.g. ubuntu? " ec2user
+read -p "What is the public ip or public dns of your ec2 instance? " ec2
 
 
 #Connect to aws EC2 instance
