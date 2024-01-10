@@ -35,10 +35,10 @@ sudo apt install certbot python3-certbot-nginx
 sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/$domain
 
 #Append domain path to folder of domain nginx file. This assumes that the domain is in root folder
-sudo sed -i 's/root /var/www/html;/root /root/$domain;/g' /etc/nginx/sites-available/$domain
+#sudo sed -i 's/root \/var\/www\/html;/root \/root\/safari;/g' /etc/nginx/sites-available/$domain
 
 #setup domain as server in nginx domain file
-sudo sed -i 's/server_name _;/server_name $domain;/g' /etc/nginx/sites-available/$domain
+sudo sed -i 's/server_name _;/server_name \$domain;/g' /etc/nginx/sites-available/$domain
 
 #install SSL
 sudo certbot --nginx -d $domain
