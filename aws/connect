@@ -1,4 +1,9 @@
 #!/bin/bash
 
+#get ec2 and name of pem file
+p read -p "What is the name of your pem file" pem
+read -p "What is the public ip or public dns of your ec2 instance? " $ec2
+
+
 #Connect to aws EC2 instance
-ssh -i safari.pem ubuntu@ec2-13-42-20-226.eu-west-2.compute.amazonaws.com
+ssh -i $pem $ec2
