@@ -23,16 +23,16 @@ curl -sL https://deb.nodesource.com/setup_$number.x -o /tmp/nodesource_setup.sh
 sudo bash /tmp/nodesource_setup.sh
 
 #Install Node.js
-sudo apt-get -y nodejs
+sudo apt install -y nodejs
 
 #Install nginx and ssl. Make sure you have a domain for this part
-sudo apt-get -y nginx
+sudo apt install -y nginx
 
 #Install Lets encrypt certbot
 sudo apt install certbot python3-certbot-nginx
 
 #Create a domain you have registered in Nginx
-sudo cp /etc/nginx/sites-available/default $domain
+sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/$domain
 
 #Append domain path to folder of domain nginx file. This assumes that the domain is in root folder
 sudo sed -i 's/root /var/www/html;/root /root/$domain;/g' /etc/nginx/sites-available/$domain
