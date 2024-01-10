@@ -1,9 +1,9 @@
 #!/bin/bash
 
 #get ec2 and name of pem file
-read -p "What is the name of your pem file" pem
+read -p "What is the name of your pem file? " pem
 read -p "What is the public ip or public dns of your ec2 instance? " $ec2
 
 
 #Connect to aws EC2 instance
-ssh -i $pem $ec2
+ssh -i $pem.pem $ec2
